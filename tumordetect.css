@@ -1,0 +1,128 @@
+/* General Styles */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .tumor-detect {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header Section */
+  .page-header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5em;
+    color: #444;
+  }
+  
+  .page-header .subtext {
+    font-size: 1.1em;
+    color: #666;
+  }
+  
+  /* Info Section */
+  .info-section {
+    padding: 15px 0;
+    text-align: center;
+  }
+  
+  .info-section h2 {
+    font-size: 1.8em;
+    color: #444;
+  }
+  
+  .info-section p {
+    font-size: 1em;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6em;
+  }
+  
+  /* Upload Section */
+  .upload-section {
+    text-align: center;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .upload-section h2 {
+    font-size: 1.8em;
+    color: #444;
+  }
+  
+  .upload-section form {
+    display: inline-block;
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .upload-section label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .upload-section input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .upload-section button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-section button:hover {
+    background-color: #1a252f;
+  }
+  
+  /* Results Section */
+  .results-section {
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .results-section h2 {
+    font-size: 1.8em;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  .results-section p {
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .results-section img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  

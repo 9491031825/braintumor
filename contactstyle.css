@@ -1,0 +1,93 @@
+/* Contact Section Styling */
+.contact {
+    padding: 3rem 2rem; /* Reduced padding to decrease overall height */
+    background-color: #f4f4f9; /* Soft background for a clean look */
+    text-align: center;
+  }
+  
+  .contact h2 {
+    font-size: 2.5rem; /* Keep the font size as is for the title */
+    font-weight: 700;
+    margin-bottom: 2rem; /* Reduced bottom margin to minimize height */
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .contact-form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Reduced gap between form elements */
+  }
+  
+  .contact-form label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1rem;
+    padding: 0.8rem; /* Reduced padding for inputs */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    background-color: #f9f9f9;
+    color: #333;
+    width: 100%;
+  }
+  
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 100px; /* Reduced minimum height of textarea */
+  }
+  
+  .contact-form button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem; /* Adjusted button padding */
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+  }
+  
+  .contact-form button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+  }
+  
+  .contact-form button:active {
+    transform: translateY(1px);
+  }
+  
+  @media (max-width: 768px) {
+    .contact-form {
+      padding: 1.5rem;
+    }
+  
+    .contact-form button {
+      width: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contact-form {
+      padding: 1.5rem;
+    }
+  
+    .contact-form button {
+      width: 100%;
+    }
+  }
+  

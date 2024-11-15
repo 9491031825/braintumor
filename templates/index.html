@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Prediction</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Prevents body scroll */
+        }
+
+        /* Center the container with scroll */
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            height: 90vh;
+            overflow-y: auto; /* Enable vertical scrolling */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #555;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="file"]:hover {
+            border-color: #007BFF;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Result styling */
+        #result-title {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #result {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .image-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .image-section img {
+            max-width: 200px; /* Limit image size */
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-label {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Brain Tumor Prediction</h1>
+        <form id="upload-form">
+            <label for="file">Upload an MRI Image:</label>
+            <input type="file" name="file" id="file" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        <h3 id="result-title">Prediction Result:</h3>
+        <div id="result"></div>
+        <div id="error-message" class="error-message" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById("upload-form").onsubmit = async function(event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById("file");
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            try {
+                const response = await fetch("/predict", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    document.getElementById("result").innerText = "";
+                    document.getElementById("error-message").innerText = data.error;
+                    document.getElementById("error-message").style.display = "block";
+                    return;
+                }
+
+                // Construct absolute paths to the images
+                const uploadedImageUrl = window.location.origin + data.uploaded_image;
+                const maskImageUrl = window.location.origin + data.prediction;
+                const overlayImageUrl = window.location.origin + data.overlay;
+
+                // Clear previous results and set new results
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = "";  // Clear previous content
+
+                // Add Uploaded Image with Label
+                const uploadedLabel = document.createElement("div");
+                uploadedLabel.className = "image-label";
+                uploadedLabel.innerText = "Original MRI Image";
+                resultDiv.appendChild(uploadedLabel);
+
+                const uploadedImageSection = document.createElement("div");
+                uploadedImageSection.className = "image-section";
+                const uploadedImage = document.createElement("img");
+                uploadedImage.src = uploadedImageUrl;
+                uploadedImage.alt = "Original MRI Image";
+                uploadedImageSection.appendChild(uploadedImage);
+                resultDiv.appendChild(uploadedImageSection);
+
+                // Add Mask Image with Label
+                const maskLabel = document.createElement("div");
+                maskLabel.className = "image-label";
+                maskLabel.innerText = "Predicted Tumor Mask";
+                resultDiv.appendChild(maskLabel);
+
+                const maskImageSection = document.createElement("div");
+                maskImageSection.className = "image-section";
+                const maskImage = document.createElement("img");
+                maskImage.src = maskImageUrl;
+                maskImage.alt = "Predicted Tumor Mask";
+                maskImageSection.appendChild(maskImage);
+                resultDiv.appendChild(maskImageSection);
+
+                // Add Overlay Image with Label
+                const overlayLabel = document.createElement("div");
+                overlayLabel.className = "image-label";
+                overlayLabel.innerText = "Overlayed Tumor Prediction";
+                resultDiv.appendChild(overlayLabel);
+
+                const overlayImageSection = document.createElement("div");
+                overlayImageSection.className = "image-section";
+                const overlayImage = document.createElement("img");
+                overlayImage.src = overlayImageUrl;
+                overlayImage.alt = "Overlayed Tumor Prediction";
+                overlayImageSection.appendChild(overlayImage);
+                resultDiv.appendChild(overlayImageSection);
+
+                 // Display Tumor Area in Pixels
+                 const areaLabel = document.createElement("div");
+                areaLabel.className = "area-label";
+                areaLabel.innerText = `Tumor Area: ${data.tumor_area_pixels} pixels`;
+                resultDiv.appendChild(areaLabel);
+
+                const totalAreaDiv = document.createElement("div");
+                totalAreaDiv.className = "image-label";
+                totalAreaDiv.innerText = `Total Area: ${data.total_area_pixels} pixels`;
+                resultDiv.appendChild(totalAreaDiv);
+
+                // Show the result title and result div
+                document.getElementById("result-title").style.display = "block";
+                resultDiv.style.display = "block";
+                document.getElementById("error-message").style.display = "none";
+
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("result").innerText = "";
+                document.getElementById("error-message").innerText = "An error occurred during prediction.";
+                document.getElementById("result").style.display = "none";
+                document.getElementById("error-message").style.display = "block";
+            }
+        };
+    </script>
+
+</body>
+</html>

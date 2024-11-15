@@ -1,0 +1,45 @@
+body, h1, h2, p, a {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .header, .footer {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+  }
+  
+  .hero {
+    background-color: #0066cc;
+    color: white;
+    padding: 2em;
+    text-align: center;
+  }
+  
+  .button {
+    background-color: #ff6666;
+    color: white;
+    padding: 0.5em 1em;
+    text-decoration: none;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    padding: 1em;
+    text-align: center;
+  }
+  
+  .contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+  }
+  
+  .footer-content {
+    text-align: center;
+  }
+  

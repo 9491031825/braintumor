@@ -1,0 +1,56 @@
+/* Footer Section Styling */
+.footer {
+    background-color: #333; /* Dark background for footer */
+    color: #fff; /* White text for contrast */
+    padding: 2rem 0; /* Padding for top and bottom */
+    text-align: center; /* Center align text */
+  }
+  
+  .footer-content {
+    max-width: 1200px; /* Max width to ensure content doesn't stretch too far */
+    margin: 0 auto; /* Center the content */
+  }
+  
+  .footer p {
+    font-size: 1rem;
+    margin-bottom: 1rem; /* Space between text and social links */
+  }
+  
+  .footer .social-links {
+    display: flex; /* Horizontal layout for social links */
+    justify-content: center; /* Center align the links */
+    gap: 1.5rem; /* Space between links */
+  }
+  
+  .footer .social-links a {
+    font-size: 1.2rem;
+    color: #fff; /* White text for links */
+    text-decoration: none; /* Remove underline from links */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .footer .social-links a:hover {
+    color: #007BFF; /* Change color on hover (blue for links) */
+  }
+  
+  @media (max-width: 768px) {
+    .footer p {
+      font-size: 0.9rem; /* Slightly smaller font size on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer p {
+      font-size: 0.8rem; /* Smaller font size for mobile screens */
+    }
+  
+    .footer .social-links {
+      flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+      justify-content: center; /* Center the links */
+    }
+  
+    .footer .social-links a {
+      font-size: 1rem; /* Reduce the size of links on mobile */
+    }
+  }
+  

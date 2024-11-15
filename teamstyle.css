@@ -1,0 +1,95 @@
+/* Team Section Styling */
+.team {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9; /* Light background for the section */
+    text-align: center;
+  }
+  
+  .team h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .team-cards {
+    display: flex; /* Changed from grid to flexbox */
+    justify-content: space-between; /* Distribute space evenly between cards */
+    gap: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: auto; /* Enable horizontal scrolling if the screen is too small */
+  }
+  
+  .card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 0 0 18%; /* Adjust the width of each card */
+  }
+  
+  .card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    color: #333;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #666;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+  
+  .team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 1.5rem auto;
+    background-color: #ddd; /* Placeholder background color */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+  }
+
+  .team-photo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Make the image round */
+    object-fit: cover; /* Ensure the image covers the area and maintains aspect ratio */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Hover lift effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card:hover .team-photo {
+    transform: scale(1.05); /* Slight zoom on photo on hover */
+  }
+  
+  @media (max-width: 768px) {
+    .team-cards {
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+      justify-content: center; /* Center the cards */
+    }
+  
+    .card {
+      flex: 0 0 45%; /* Adjust card width for smaller screens */
+      margin-bottom: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      flex: 0 0 100%; /* Stack cards on top of each other for very small screens */
+    }
+  }
+  
